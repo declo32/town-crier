@@ -8,10 +8,10 @@ require 'uri'
 require 'fileutils'
 
 $client=Twitter::REST::Client.new do |config|
-    config.consumer_key        = "OIMAscWVLk27DEcV5qd9BJVuw"
-    config.consumer_secret     = "1WfPwIrv71TdFjrvki4PeU101IQ07j3psv9xD7DcKfEHEpy2k6"
-    config.access_token        = "399061958-VHTYfpgwEhVw7WlkfovMJbZlUAGMBmF5io9fZeOt"
-    config.access_token_secret = "sMKjyqd5q8phVgEPWWH9LAnjmKPGNPJ41bwTeU22K77xX"
+    config.consumer_key        = "CONSUMER_KEY"
+    config.consumer_secret     = "CONSUMER_SECRET"
+    config.access_token        = "ACCESS_TOKEN"
+    config.access_token_secret = "ACCESS_SECRET"
 end
 
 #turns the url into a Nokogiri object
