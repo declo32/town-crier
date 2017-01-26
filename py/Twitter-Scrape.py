@@ -16,24 +16,30 @@ users_file.close()
 users = []
 for username in usernames:
     try:
-        users.append(
-            api.GetUser(screen_name=username)
+        user = (
+            username,
+            api.GetUserTimeline(screen_name=username)
         )
+        users.append(user)
     except twitter.error.TwitterError:
         print("User {username} not found".format(username=username))
 
 # Format tweets
-
-tweets = [
+# TODO: Figure out how to get image from tweet
+tweets = "\n".join([
     """
-    <img class="profile-pic" src="{profile_pic_url}"></img>
-    <h1 class="user">{user}</h1>
-    <h3 class="message">{message}</h3>
-    <img class="tweet-image" src="{img_url}"></img>
+    <img class="profile-pic" src="{tweet.user.profile_image_url}"></img>
+    <h1 class="user">{username}</h1>
+    <h3 class="message">{tweet.text}</h3>
+    <img class="tweet-image" src="I DON'T KNOW HOW TO DO THIS"></img>
     <br>
-    """.format(profile_pic_url=user.profile_image_url,
-               user=user.screen_name,
-               message="Hello, World!",
-               img_url="")
+    """.format(username=user[0], tweet=tweet)
+
     for user in users
-]
+    for tweet in user[1]
+    ])
+
+"""
+with open("Test.html", "w") as file:
+    file.write(tweets)
+"""
