@@ -35,7 +35,5 @@ announcements_soup = BeautifulSoup(announcements_data, "lxml")          # Conver
 announcements_final = announcements_soup.find("div", attrs={"itemprop": "articleBody"})
 announcements_final = announcements_final.prettify()
 
-# Give out the announcements
-# Might use a different method later, like writing to a file
-if __name__ == '__main__':
-    print(announcements_final)
+with open("../html/from-school.html", "w") as file:
+    file.write(announcements_final)
