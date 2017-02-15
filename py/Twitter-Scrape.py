@@ -1,8 +1,19 @@
 import time
+import re
+import urllib.request
 
 import twitter
+from bs4 import BeautifulSoup
 
-import TwitterAPIOAuth as TOAuth  # Local, get your own
+import TwitterAPIOAuth as TOAuth  # Local. Get your own, hippy.
+
+
+def get_img_url(tco_url):
+    req = urllib.request.Request(tco_url)
+    resp = urllib.request.urlopen(req)
+    soup = BeautifulSoup(resp)
+
+    return soup.find("div", attrs={"class": "idontknow"}).find("img")
 
 api = twitter.Api(consumer_key=TOAuth.CONSUMER_KEY,
                   consumer_secret=TOAuth.CONSUMER_SECRET,
@@ -30,19 +41,26 @@ for username in usernames:
         print("User {username} not found".format(username=username))
 
 # Format tweets
-# TODO Figure out how to get image from tweet
-tweets = "\n".join([
-    """
-    <img class="profile-pic" src="{tweet.user.profile_image_url}"></img>
-    <h1 class="user">{username}</h1>
-    <h3 class="message">{tweet.text}</h3>
-    <img class="tweet-image" src="{tweet.img]}"></img>
-    <br>
-    """.format(username=user[0], tweet=tweet)
+tweet_re = re.compile(r"^(?P<message>.*?)\s*(?P<image_url>https://t\.co/\w+)?$", re.X)
+tweets_html = ""
 
-    for user in users
-    for tweet in user[1]
-    ]).encode("UTF-8")  # Get rid of uncool characters
+with open("../html/from-twitter.html") as file:
+    template = file.read()
 
-with open("../html/from-twitter.html", "wb") as file:
-    file.write(tweets)
+    for un, tl in users:
+        for raw_tweet in tl:
+            tweet = tweet_re.match(raw_tweet.text)
+
+            if tweet:
+                if tweet.group("image_url"):
+                    tweets_html += template.format(
+                        PROFILE_PIC=raw_tweet.user.profile_image_url,
+                        USERNAME=un,
+                        MESSAGE=tweet.group("message"),
+                        IMAGE_URL=tweet.group("image_url")  # get_img_url(tweet.group("image_url")),
+                    )
+
+tweets_html = tweets_html.encode("UTF-8")
+
+with open("out.html", "wb") as file:
+    file.write(tweets_html)
