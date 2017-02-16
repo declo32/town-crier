@@ -13,7 +13,11 @@ def get_img_url(tco_url):
     resp = urllib.request.urlopen(req)
     soup = BeautifulSoup(resp)
 
-    return soup.find("div", attrs={"class": "idontknow"}).find("img")
+    try:
+        return soup.find("div", attrs={"class": "AdaptiveMedia-photoContainer js-adaptive-photo "})
+    except AttributeError:
+        # Doesn't link to an image
+        return ""
 
 api = twitter.Api(consumer_key=TOAuth.CONSUMER_KEY,
                   consumer_secret=TOAuth.CONSUMER_SECRET,
@@ -44,7 +48,7 @@ for username in usernames:
 tweet_re = re.compile(r"^(?P<message>.*?)\s*(?P<image_url>https://t\.co/\w+)?$", re.X)
 tweets_html = ""
 
-with open("../html/from-twitter.html") as file:
+with open("../html/twitter-skeleton.html") as file:
     template = file.read()
 
     for un, tl in users:
@@ -57,10 +61,17 @@ with open("../html/from-twitter.html") as file:
                         PROFILE_PIC=raw_tweet.user.profile_image_url,
                         USERNAME=un,
                         MESSAGE=tweet.group("message"),
-                        IMAGE_URL=tweet.group("image_url")  # get_img_url(tweet.group("image_url")),
+                        IMAGE_URL=get_img_url(tweet.group("image_url")),
+                    )
+                else:
+                    tweets_html += template.format(
+                        PROFILE_PIC=raw_tweet.user.profile_image_url,
+                        USERNAME=un,
+                        MESSAGE=tweet.group("message"),
+                        IMAGE_URL="",
                     )
 
 tweets_html = tweets_html.encode("UTF-8")
 
-with open("out.html", "wb") as file:
+with open("../html/from-twitter.html", "wb") as file:
     file.write(tweets_html)

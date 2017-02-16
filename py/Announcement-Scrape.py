@@ -33,7 +33,7 @@ announcements_soup = BeautifulSoup(announcements_data, "lxml")          # Conver
 
 # Get announcements to write to file
 announcements_final = announcements_soup.find("div", attrs={"itemprop": "articleBody"})
-announcements_final = announcements_final.prettify()
+announcements_final = announcements_final.prettify()  # This is to convert it to a string, not aesthetics
 
 with open("../html/from-school.html", "w") as file:
     file.write(announcements_final)
