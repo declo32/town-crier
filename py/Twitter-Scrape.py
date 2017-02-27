@@ -14,7 +14,6 @@ def get_img_url(tco_url):
     soup = BeautifulSoup(resp)
 
     try:
-        img_url = soup.find("div", attrs={"class": "AdaptiveMedia-photoContainer js-adaptive-photo "}).find("img")
         return soup.find("div", attrs={"class": "AdaptiveMedia-photoContainer js-adaptive-photo "}).find("img")
     except AttributeError:
         # Doesn't link to an image

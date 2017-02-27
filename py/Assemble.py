@@ -1,14 +1,11 @@
-skeleton_file = open("../html/Skeleton.html", "rb")
-skeleton = skeleton_file.read()
-skeleton_file.close()
+with open("../html/Skeleton.html", "rb") as file:
+    skeleton = file.read()
 
-from_school_file = open("../html/from-school.html", "rb")
-from_school = from_school_file.read()
-from_school_file.close()
+with open("../html/from-school.html", "rb") as file:
+    from_school = file.read()
 
-from_twitter_file = open("../html/from-twitter.html", "rb")
-from_twitter = from_twitter_file.read()
-from_twitter_file.close()
+with open("../html/from-twitter.html", "rb") as file:
+    from_twitter = file.read()
 
 with open("../SlideShow.html", "wb") as file:
     file.write(
