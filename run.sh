@@ -4,7 +4,7 @@ cd py
 
 # Order is important
 declare -a files=(
-    # "Announcement-Scrape.py"
+    "Announcement-Scrape.py"
     "Twitter-Scrape.py"
     "Assemble.py"
 )
