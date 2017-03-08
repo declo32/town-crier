@@ -11,4 +11,11 @@
 - If a tweet doesn't link to an image, it makes the tweet's text go onto the slideshow all by itself. This can look stupid.  
 
 **Here is what it does:**  
-- Gets tweets, puts them into an html document.
+- Gets tweets, puts them into an html document.  
+  
+<hr>  
+  
+***Ver 1.1*** "I can get used to it"  
+  
+**Here is what's changed:**  
+- Gets full stuff from school website... I think. It should at least get the relative links to images.  
