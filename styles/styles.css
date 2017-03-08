@@ -1,10 +1,14 @@
-h1{
+h1 {
     font-size: 100px;
 }
-h2{
+h2 {
     font-size: 75px;
 }
+img {
+    max-height: 500px;
+    width: auto;
+}
 
-.test{
+.test {
     color:green
 }

@@ -6,6 +6,7 @@ Takes the announcements from the school website, by
     - Print out that html
 """
 
+import re
 import urllib.request
 
 from bs4 import BeautifulSoup
@@ -30,10 +31,15 @@ announcements_request = urllib.request.Request(announcements_url)       # Reques
 announcements_response = urllib.request.urlopen(announcements_request)  # Get response
 announcements_data = announcements_response.read()                      # Get website's html
 announcements_soup = BeautifulSoup(announcements_data, "lxml")          # Convert html to BeautifulSoup object
-
-# Get announcements to write to file
 announcements_final = announcements_soup.find("div", attrs={"itemprop": "articleBody"})
-announcements_final = announcements_final.prettify()  # This is to convert it to a string, not aesthetics
+
+# Make it better
+url_re = re.compile(r"https?://.*", re.I)
+for img in announcements_final.find_all("img"):       # Fix relative links
+    if not url_re.match(img["src"]):
+        print(img["src"])
+        img["src"] = announcements_url + img["src"]
+announcements_final = announcements_final.prettify()  # To make it a string, not for aesthetics
 
 with open("../html/from-school.html", "w") as file:
     file.write(announcements_final)
