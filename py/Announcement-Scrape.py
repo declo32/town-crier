@@ -41,5 +41,6 @@ for img in announcements_final.find_all("img"):       # Fix relative links
         img["src"] = announcements_url + img["src"]
 announcements_final = announcements_final.prettify()  # To make it a string, not for aesthetics
 
+# Write announcements to a file
 with open("../html/from-school.html", "w") as file:
     file.write(announcements_final)
