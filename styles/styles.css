@@ -8,9 +8,8 @@ img {
     height: 100%;
 }
 
-.TwitterImage {
-    height: 500px;
-    width: auto;
+.MagicScroller {
+    /* Some magic that makes it scroll down add infynitem */
 }
 
 .test {
