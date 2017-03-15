@@ -5,7 +5,11 @@ h2 {
     font-size: 75px;
 }
 img {
-    max-height: 500px;
+    height: 100%;
+}
+
+.TwitterImage {
+    height: 500px;
     width: auto;
 }
 
