@@ -19,3 +19,7 @@
   
 **Here is what's changed:**  
 - Gets full stuff from school website... I think. It should at least get the relative links to images.  
+  
+<hr>  
+  
+**If you want to work on it, start in `run.sh`.**  
