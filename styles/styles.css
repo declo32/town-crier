@@ -8,8 +8,10 @@ img {
     height: 100%;
 }
 
-.MagicScroller {
-    /* Some magic that makes it scroll down add infynitem */
+marquee.MagicScroller {
+    position: absolute;
+    top: 0;
+    bottom: 0;
 }
 
 .test {
