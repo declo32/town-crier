@@ -1,0 +1,11 @@
+# IDE's and stuff
+.idea/
+py/__pycache__/
+
+# Worthless
+html/from-school.html
+html/from-twitter.html
+SlideShow.html
+
+# Private
+py/TwitterAPIOAuth.py
