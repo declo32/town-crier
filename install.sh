@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-declare -a libs=("beautifulsoup4" "python-twitter")
+declare -a libs=("beautifulsoup4" "python-twitter" "lxml")
 
 for lib in "${libs[@]}"
 do
