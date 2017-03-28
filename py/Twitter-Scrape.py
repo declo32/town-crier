@@ -1,6 +1,7 @@
 import time
 import re
 import urllib.request
+import http.client
 
 import twitter
 from bs4 import BeautifulSoup
@@ -9,10 +10,17 @@ import TwitterAPIOAuth as TOAuth  # Local. Get your own, hippy.
 
 
 def get_img_url(tco_url):
-    print("I think it's about to print an error. But everything SHOULD be fine. As long as it only talks about 'lxml'")
+    print("I think it's about to print an error. "
+          "But everything SHOULD be fine. "
+          "As long as it only talks about 'lxml'")
     req = urllib.request.Request(tco_url)
     resp = urllib.request.urlopen(req)
-    soup = BeautifulSoup(resp)
+
+    try:
+        soup = BeautifulSoup(resp)
+    except http.client.IncompleteRead:
+        print("I think it didn't work")
+        return ""
 
     try:
         return soup.find("div", attrs={"class": "AdaptiveMedia-photoContainer js-adaptive-photo "}).find("img")
