@@ -9,8 +9,13 @@ declare -a files=(
     "Assemble.py"
 )
 
-for file in "${files[@]}"
-do
+for file in "${files[@]}"; do
     echo "Running $file"
     sudo python3 "$file"
 done
+
+# Launch display
+
+cd ..
+
+epiphany SlideShow.html & PID=$!; sleep 20; kill $PID
