@@ -2,11 +2,11 @@
 
 # Parse arguments
 
-TIMEOUT=$(expr 60*60*8)  # Defaults to 8 hours
+DISPLAYTIME=28800
 for i in "$@"; do
 	case $i in
-		--run-time=*)
-		RUNTIME="${i#*=}"
+		--display-time=*)
+		DISPLAYTIME="${i#*=}"
 		shift
 		;;
 		
@@ -15,7 +15,7 @@ for i in "$@"; do
 	esac
 done
 
-echo "RUNTIME = ${RUNTIME}"
+echo "DISPLAYTIME = ${DISPLAYTIME}"
 
 # Get info
 
@@ -37,6 +37,7 @@ done
 
 cd ..
 
-epiphany SlideShow.html & PID=$! & sleep 10
-xte "key F11" -x:0  # This literally pretends to push the F11 key
-sleep $TIMEOUT; kill $PID
+epiphany SlideShow.html & PID=$! # & sleep 10
+# xte "key F11" -x:0 & sleep 10  # This literally to pushes the F11 key
+# xte "str  "                    # And this literally pushes space
+sleep $DISPLAYTIME; kill $PID
