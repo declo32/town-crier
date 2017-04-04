@@ -5,8 +5,8 @@
 TIMEOUT=$(expr 60*60*8)  # Defaults to 8 hours
 for i in "$@"; do
 	case $i in
-		--time-out=*)
-		TIMEOUT="${i#*=}"
+		--run-time=*)
+		RUNTIME="${i#*=}"
 		shift
 		;;
 		
@@ -15,7 +15,7 @@ for i in "$@"; do
 	esac
 done
 
-echo "TIMEOUT = ${TIMEOUT}"
+echo "RUNTIME = ${RUNTIME}"
 
 # Get info
 
@@ -28,7 +28,7 @@ declare -a files=(
     "Assemble.py"
 )
 
-for file in "${files[@]}"; do  # files[@]
+for file in "${files[@]}"; do
     echo "Running ${file}"
     sudo python3 "${file}"
 done
@@ -37,4 +37,6 @@ done
 
 cd ..
 
-epiphany SlideShow.html & PID=$!; sleep $TIMEOUT; kill $PID
+epiphany SlideShow.html & PID=$! & sleep 10
+xte "key F11" -x:0  # This literally pretends to push the F11 key
+sleep $TIMEOUT; kill $PID
