@@ -5,7 +5,7 @@
 DISPLAYTIME=28800
 for i in "$@"; do
 	case $i in
-		--display-time=*)
+		-d=*|--display-time=*)
 		DISPLAYTIME="${i#*=}"
 		shift
 		;;
@@ -37,7 +37,8 @@ done
 
 cd ..
 
-epiphany SlideShow.html & PID=$! # & sleep 10
-# xte "key F11" -x:0 & sleep 10  # This literally to pushes the F11 key
-# xte "str  "                    # And this literally pushes space
-sleep $DISPLAYTIME; kill $PID
+epiphany SlideShow.html & PID=$!
+sleep 10; xte "key F11" -x:0  # This literally to pushes the F11 key
+sleep $DISPLAYTIME
+echo "I'm about to kill the process known as ${PID}"
+kill $PID
