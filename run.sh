@@ -10,8 +10,14 @@ for i in "$@"; do
 		shift
 		;;
 		
+		-h|--help)
+		echo "-d or --display-time to set display time"
+		exit 0
+		;;
+		
 		*)
 		echo "$i isn't a thing"
+		;;
 	esac
 done
 
