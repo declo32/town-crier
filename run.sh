@@ -6,7 +6,7 @@ DISPLAYTIME=infinity
 USEOLD=false
 for i in "$@"; do
 	case $i in
-		-d=*|--display-time=*)
+		-t=*|--display-time=*)
 		DISPLAYTIME="${i#*=}"
 		shift
 		;;
