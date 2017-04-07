@@ -38,9 +38,6 @@ if [ !$USEOLD ]; then
 	python3 Assemble.py
 	
 	cd ..
-	
-else
-	echo "YOU DID USE OLD"
 fi
 
 # Launch display
