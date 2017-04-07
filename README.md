@@ -21,5 +21,10 @@
 - Gets full stuff from school website... I think. It should at least get the relative links to images.  
   
 <hr>  
+
+***Ver 1.it.actually.works*** "I've been prematurely naming these, this is the first one that works"  
+  
+**Here is what doesn't work:**  
+- Display will freeze after fullscreen, unfreezes after moving the mouse  
   
 # If you want to work on it, start in `run.sh`.  

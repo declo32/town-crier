@@ -3,6 +3,7 @@
 # Parse arguments
 
 DISPLAYTIME=28800
+USEOLD=false
 for i in "$@"; do
 	case $i in
 		-d=*|--display-time=*)
@@ -10,38 +11,39 @@ for i in "$@"; do
 		shift
 		;;
 		
-		-h|--help)
-		echo "-d or --display-time to set display time"
-		exit 0
+		-u|--use-old)
+		USEOLD=true
+		shift
 		;;
 		
-		*)
-		echo "$i isn't a thing"
+		-h|--help)
+		echo "-d or --display-time to set display time
+-u or --use-old      to use old html"
+		exit 0
 		;;
 	esac
 done
 
 echo "DISPLAYTIME = ${DISPLAYTIME}"
+echo "USEOLD      = ${USEOLD}"
 
 # Get info
 
-cd py
-
-# Order is important
-declare -a files=(
-    "Announcement-Scrape.py"
-    "Twitter-Scrape.py"
-    "Assemble.py"
-)
-
-for file in "${files[@]}"; do
-    echo "Running ${file}"
-    sudo python3 "${file}"
-done
+if [ !$USEOLD ]; then
+	echo "YOU DIDN'T USE OLD"
+	cd py
+	
+	python3 Announcement-Scrape.py
+	python3 Twitter-Scrape.py
+	python3 Assemble.py
+	
+	cd ..
+	
+else
+	echo "YOU DID USE OLD"
+fi
 
 # Launch display
-
-cd ..
 
 epiphany SlideShow.html & PID=$!
 sleep 10; xte "key F11" -x:0  # This literally to pushes the F11 key
