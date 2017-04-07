@@ -10,13 +10,12 @@ h2 {
 }
 
 img {
-    max-height: 100%;
-    width: auto;
+    max-width: 100%;
+    max-height: auto;
 }
 
 .twitter-pic {
-    height: 50px;
-    width: auto;
+    width:500px;
 }
 
 marquee.MagicScroller {

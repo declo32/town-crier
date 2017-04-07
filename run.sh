@@ -2,7 +2,7 @@
 
 # Parse arguments
 
-DISPLAYTIME=28800
+DISPLAYTIME=infinity
 USEOLD=false
 for i in "$@"; do
 	case $i in
