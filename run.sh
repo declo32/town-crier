@@ -30,7 +30,6 @@ echo "USEOLD      = ${USEOLD}"
 # Get info
 
 if [ !$USEOLD ]; then
-	echo "YOU DIDN'T USE OLD"
 	cd py
 	
 	python3 Announcement-Scrape.py
