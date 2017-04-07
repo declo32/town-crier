@@ -32,9 +32,12 @@ echo "USEOLD      = ${USEOLD}"
 if [ !$USEOLD ]; then
 	cd py
 	
-	python3 Announcement-Scrape.py
-	python3 Twitter-Scrape.py
-	python3 Assemble.py
+	declare -a FILES=("Announcement-Scrape.py" "Twitter-Scrape.py" "Assemble.py")
+	for FILENAME in "${FILES[@]}"
+	do
+		echo "Running $FILENAME"
+		python3 $FILENAME
+	done
 	
 	cd ..
 fi
