@@ -17,7 +17,7 @@ for i in "$@"; do
 		;;
 		
 		-h|--help)
-		echo "-d or --display-time to set display time
+		echo "-t or --display-time to set display time
 -u or --use-old      to use old html"
 		exit 0
 		;;
