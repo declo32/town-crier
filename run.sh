@@ -46,7 +46,7 @@ fi
 
 unclutter -display :0 -noevents -grab & PID1=$!  # This hides the mouse
 epiphany SlideShow.html & PID2=$!
-sleep 10; xte "key F11" -x:0  # This literally to pushes the F11 key
+sleep 20; xte "key F11" -x:0  # This literally to pushes the F11 key
 sleep $DISPLAYTIME
 echo "I'm about to kill the processes known as ${PID1} and ${PID2}"
 kill $PID1
