@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Do title
+
+figlet "town-crier"
+
 # Parse arguments
 
 DISPLAYTIME=infinity
