@@ -4,6 +4,7 @@
 
 DISPLAYTIME=infinity
 USEOLD=false
+SHUTDOWN=false
 for i in "$@"; do
 	case $i in
 		-t=*|--display-time=*)
@@ -16,9 +17,15 @@ for i in "$@"; do
 		shift
 		;;
 		
+		-s|--shutdown)
+		SHUTDOWN=true
+		shift
+		;;
+		
 		-h|--help)
 		echo "-t or --display-time to set display time
--u or --use-old      to use old html"
+-u or --use-old      to use old html
+-s or --shutdown     to shutdown afterwards"
 		exit 0
 		;;
 	esac
@@ -26,10 +33,11 @@ done
 
 echo "DISPLAYTIME = ${DISPLAYTIME}"
 echo "USEOLD      = ${USEOLD}"
+echo "SHUTDOWN    = ${SHUTDOWN}"
 
 # Get info
 
-if [ !$USEOLD ]; then
+if [ ! $USEOLD = true ]; then
 	cd py
 	
 	declare -a FILES=("Announcement-Scrape.py" "Twitter-Scrape.py" "Assemble.py")
@@ -51,3 +59,9 @@ sleep $DISPLAYTIME
 echo "I'm about to kill the processes known as ${PID1} and ${PID2}"
 kill $PID1
 kill $PID2
+
+# Shutdown
+
+if [ $SHUTDOWN = true ]; then
+	shutdown --poweroff now
+fi
