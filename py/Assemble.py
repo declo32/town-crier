@@ -9,6 +9,5 @@ with open("../html/from-twitter.html", "r", errors="ignore") as file:
 
 with open("../SlideShow.html", "w") as file:
     file.write(
-        # I don't like this
         skeleton.format(FROM_SCHOOL=from_school, FROM_TWITTER=from_twitter)
     )
