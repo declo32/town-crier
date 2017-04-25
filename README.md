@@ -27,4 +27,15 @@
 **Here is what doesn't work:**  
 - Display will freeze after fullscreen, unfreezes after moving the mouse  
   
+<hr>  
+  
+***Ver 1.I.like.this.nomenclature.better*** "I think it's better"  
+  
+**Here is what has been fixed/added**  
+- Shuts down after  
+- No longer freezes  
+  
+**Here is what needs to be changed**  
+- Make it easier to contribute to without using the Twitter API  
+  
 # If you want to work on it, start in `run.sh`.  
