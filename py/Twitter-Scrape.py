@@ -10,7 +10,7 @@ import TwitterAPIOAuth as TOAuth  # Local. Get your own, hippy.
 
 
 def get_img_url(tco_url):
-    print("I think it's about to print an error. "
+    print("I think it might print an error. "
           "But everything SHOULD be fine. "
           "As long as it only talks about 'lxml'")
     req = urllib.request.Request(tco_url)
