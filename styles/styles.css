@@ -2,6 +2,10 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+body {
+    background: url("./Background.png");
+}
+
 h1 {
     font-size: 75px;
 }
