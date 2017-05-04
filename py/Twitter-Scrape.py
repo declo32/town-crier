@@ -62,7 +62,7 @@ tweets_html = ""
 with open("../html/twitter-skeleton.html") as file:
     template = file.read()
 
-    for un, tl in users:
+    for un, tl in users:  # username, tweet list
         for raw_tweet in tl:
             tweet = tweet_re.match(raw_tweet.text)
 
