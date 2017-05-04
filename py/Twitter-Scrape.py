@@ -66,7 +66,6 @@ with open("../html/twitter-skeleton.html") as file:
         for raw_tweet in tl:
             tweet = tweet_re.match(raw_tweet.text)
 
-            # TODO: THIS IS TERRIBLE, SOMEONE PLEASE FIX IT
             if tweet:
                 tweets_html += template.format(
                     PROFILE_PIC=raw_tweet.user.profile_image_url,
