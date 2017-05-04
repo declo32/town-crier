@@ -10,6 +10,9 @@ import TwitterAPIOAuth as TOAuth  # Local. Get your own, hippy.
 
 
 def get_img_url(tco_url):
+    if tco_url is None:
+        return ""
+
     req = urllib.request.Request(tco_url)
     resp = urllib.request.urlopen(req)
 
@@ -53,7 +56,7 @@ for username in usernames:
         print("User {username} not found".format(username=username))
 
 # Format tweets
-tweet_re = re.compile(r"^(?P<message>.*?)\s*(?P<image_url>https://t\.co/\w+)?$", re.X)
+tweet_re = re.compile(r"^(?P<message>.*?)\s*(?P<image_url>https?://t\.co/\w+)?$", re.X)
 tweets_html = ""
 
 with open("../html/twitter-skeleton.html") as file:
@@ -65,20 +68,12 @@ with open("../html/twitter-skeleton.html") as file:
 
             # TODO: THIS IS TERRIBLE, SOMEONE PLEASE FIX IT
             if tweet:
-                if tweet.group("image_url"):
-                    tweets_html += template.format(
-                        PROFILE_PIC=raw_tweet.user.profile_image_url,
-                        USERNAME=un,
-                        MESSAGE=tweet.group("message"),
-                        IMAGE_URL=get_img_url(tweet.group("image_url")),
-                    )
-                else:
-                    tweets_html += template.format(
-                        PROFILE_PIC=raw_tweet.user.profile_image_url,
-                        USERNAME=un,
-                        MESSAGE=tweet.group("message"),
-                        IMAGE_URL="",
-                    )
+                tweets_html += template.format(
+                    PROFILE_PIC=raw_tweet.user.profile_image_url,
+                    USERNAME=un,
+                    MESSAGE=tweet.group("message"),
+                    IMAGE_URL=get_img_url(tweet.group("image_url")),
+                )
 
 tweets_html = tweets_html.encode("UTF-8")
 
