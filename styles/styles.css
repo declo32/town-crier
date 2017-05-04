@@ -18,6 +18,16 @@ img {
     max-height: auto;
 }
 
+.tweet-header {}
+
+.profile-pic {
+    float: left;
+    height: 100px;
+    width: 100px;
+}
+
+.user {}
+
 .twitter-pic {
     width: 500px;
 }
