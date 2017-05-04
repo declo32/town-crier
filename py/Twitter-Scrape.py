@@ -16,7 +16,7 @@ def get_img_url(tco_url):
     try:
         soup = BeautifulSoup(resp, "lxml")
     except http.client.IncompleteRead:
-        print("I think it didn't work")
+        print("It didn't work")
         return ""
 
     try:
