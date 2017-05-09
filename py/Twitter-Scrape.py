@@ -24,8 +24,7 @@ def get_img_url(tco_url):
 
     try:
         return soup.find("div", attrs={"class": "AdaptiveMedia-photoContainer js-adaptive-photo "}).find("img")
-    except AttributeError:
-        # Doesn't link to an image
+    except AttributeError:  # Doesn't link to an image
         return ""
 
 # These are from a local file
@@ -46,12 +45,13 @@ current_time = time.time()
 limit_in_seconds = 60 * 60 * 24 * 7  # One week
 for username in usernames:
     try:
-        user = (
-            username,
-            [x for x in api.GetUserTimeline(screen_name=username)
-             if current_time - x.created_at_in_seconds <= limit_in_seconds]
+        users.append(
+            (
+                username,
+                [x for x in api.GetUserTimeline(screen_name=username)
+                 if current_time - x.created_at_in_seconds <= limit_in_seconds]
+            )
         )
-        users.append(user)
     except twitter.error.TwitterError:
         print("User {username} not found".format(username=username))
 
@@ -74,7 +74,7 @@ with open("../html/twitter-skeleton.html") as file:
                     IMAGE_URL=get_img_url(tweet.group("image_url")),
                 )
 
-tweets_html = tweets_html.encode("UTF-8")
+tweets_html = tweets_html.encode("UTF-8")  # Weird characters, some map to <undefined>
 
 with open("../html/from-twitter.html", "wb") as file:
     file.write(tweets_html)
