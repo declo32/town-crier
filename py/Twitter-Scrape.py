@@ -28,6 +28,7 @@ def get_img_url(tco_url):
         # Doesn't link to an image
         return ""
 
+# These are from a local file
 api = twitter.Api(consumer_key=TOAuth.CONSUMER_KEY,
                   consumer_secret=TOAuth.CONSUMER_SECRET,
                   access_token_key=TOAuth.ACCESS_TOKEN_KEY,
