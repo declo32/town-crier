@@ -35,11 +35,10 @@ api = twitter.Api(consumer_key=TOAuth.CONSUMER_KEY,
                   access_token_secret=TOAuth.ACCESS_TOKEN_SECRET)
 
 # Get all registered usernames
-users_file = open("../users.txt", "r")
-usernames = [username
-             for username in users_file.read().splitlines()  # Take each line without getting a newline character
-             if "#" not in username]                         # For comments
-users_file.close()
+with open("../users.txt", "r") as users_file:
+    usernames = [username
+                 for username in users_file.read().splitlines()  # Take each line without getting a newline character
+                 if "#" not in username]                         # For comments
 
 # Get all valid users' recent posts
 users = []
