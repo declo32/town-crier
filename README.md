@@ -3,4 +3,4 @@
   
 <hr>  
 
-# If you want to work on it, start in `run.sh`.  
+# If you want to work on it, start in `run.sh` to see what's going on.
