@@ -3,7 +3,7 @@ Takes the announcements from the school website, by
     - Going to a list of links to all announcements, ever
     - Getting the first link in that list, to the most recent announcements
     - Opening that link and finding the html containing the announcements
-    - Print out that html
+    - Copying and pasting that html into a file
 """
 
 import re
