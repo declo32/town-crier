@@ -33,7 +33,7 @@ img {
     width: 500px;
 }
 
-marquee.MagicScroller {
+.MagicScroller {
     position: absolute;
     top: 0;
     bottom: 0;

@@ -1,0 +1,7 @@
+<h1 style="padding-left:35%">Town Crier</h1>
+<h3>The Scituate High School announcement aggregation system.</h4>
+<h2>Summary</h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This system takes information from two sources, the Scituate High School website announcements archive and twitter accounts found in the <code>usernames.txt</code> file. The system, in summary, "scrapes" the announcements archive, taking only the most recent announcements. Then, using the Python Twitter library, it takes the tweets from the list of usernames. All information gathered in this is added to the <code>feed.txt</code>. The pictures are gathered from the tweets and downloaded into the <code>pictures</code> folder. This text file will look a little bit strange, don't worry. This information is decoded and sent to the GUI, which works as a slideshow, showing the source at the top, the text below that, and the picture below that.<br>
+<h2>Adding a Twitter username</h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Over the course of this system's shelf life, there will be new clubs than there are in its beginning. To add a username to the list, you will need to access the <code>username.txt</code> which can be found in the <code>options</code> folder. Each username must be separated by a new line. To leave a note, or make a line that is NOT a username, start the line with a <code>#</code>.
+<p>We at Town Crier hope that this instruction manual will be a useful resource for this project's legacy.</p>

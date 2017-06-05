@@ -1,0 +1,40 @@
+This is what I've changed:
+
+    - Got most of the files (excluding display.py) almost to the PEP8 standard of formatting
+
+    - Accidentally changed everything to Python3
+
+    - feed.txt is now files/feed.pkl
+        - You were storing data in your own format, but XML, JSON, pickle, etc. are better at that. I chose pickle
+          because it's made for Python.
+        - Also, I replaced the .py file for parsing the data with utils.py, which now has functions to edit the
+          feed.pkl file.
+
+    - Now a class is used to represent announcements, instead of a dict
+
+    - Calculate screen time per word in utils.Announcement instead of display.py
+
+    - Got the logo placed
+        - Has a white background: (Good/Bad)?
+
+This is what I'm pretty sure needs to be done:
+
+    - Scraping files
+        - web-scraper.py leaves weird stuff sometimes in an attempt to get rid of all non-ASCII characters
+            Ex. &nbsp; is taken out, concatenating somewords
+            - We might need to make a request for the format of the announcements website to be changed
+        - tweet-scraper.py will leave in things like &amp;
+        - Also, tweet-scraper.py can't get stuff from @SCITgirlsLAX
+
+    - display.py
+        - Needs to be PEP8'ed
+        - Seems like widgets are stacked on top of each other, building up over time
+        - Won't work with Python3 on the Raspberry Pi -- can't import PIL.ImageTk -- but will with my machine
+            - PIL seems to be installed on the Pi, though
+            - Solution: (???)
+                - sudo apt-get install python3-imaging
+                - sudo apt-get install python3-imaging-tk
+        - Get the logo on  there
+        - Text goes off the screen
+        - Also, the verdana font makes me think of Windows Movie Maker, I think we should use Helvetica Neue
+            - I tried Helvetica Neue, I still don't like it
