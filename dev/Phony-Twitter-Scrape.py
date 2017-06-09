@@ -1,4 +1,8 @@
+import sys
+import os
 import re
+
+path = os.path.split(sys.argv[0])[0]
 
 users = [
     ("JohnDoe", "http://leafii.com/images/defaultProfilePic.png",
@@ -20,7 +24,7 @@ users = [
 tweet_re = re.compile(r"^(?P<message>.*?)\s*(?P<image_url>https?://.*)?$", re.X)
 tweets_html = ""
 
-with open("../html/twitter-skeleton.html") as file:
+with open(path + "/../html/twitter-skeleton.html") as file:
     template = file.read()
 
     for un, pic, tl in users:
@@ -46,5 +50,5 @@ with open("../html/twitter-skeleton.html") as file:
 
 tweets_html = tweets_html.encode("UTF-8")
 
-with open("../html/from-twitter.html", "wb") as file:
+with open(path + "/../html/from-twitter.html", "wb") as file:
     file.write(tweets_html)

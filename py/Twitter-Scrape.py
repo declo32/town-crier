@@ -1,3 +1,5 @@
+import sys
+import os
 import time
 import re
 import urllib.request
@@ -7,6 +9,8 @@ import twitter
 from bs4 import BeautifulSoup
 
 import TwitterAPIOAuth as TOAuth  # Local. Get your own, hippy.
+
+path = os.path.split(sys.argv[0])[0]
 
 
 def get_img_url(tco_url):
@@ -34,7 +38,7 @@ api = twitter.Api(consumer_key=TOAuth.CONSUMER_KEY,
                   access_token_secret=TOAuth.ACCESS_TOKEN_SECRET)
 
 # Get all registered usernames
-with open("../users.txt", "r") as users_file:
+with open(path + "/../users.txt", "r") as users_file:
     usernames = [username
                  for username in users_file.read().splitlines()  # Take each line without getting a newline character
                  if "#" not in username]                         # For comments
@@ -59,7 +63,7 @@ for username in usernames:
 tweet_re = re.compile(r"^(?P<message>.*?)\s*(?P<image_url>https?://t\.co/\w+)?$", re.X)
 tweets_html = ""
 
-with open("../html/twitter-skeleton.html") as file:
+with open(path + "/../html/twitter-skeleton.html") as file:
     template = file.read()
 
     for un, tl in users:  # username, tweet list
@@ -76,5 +80,5 @@ with open("../html/twitter-skeleton.html") as file:
 
 tweets_html = tweets_html.encode("UTF-8")  # Weird characters, some map to <undefined>
 
-with open("../html/from-twitter.html", "wb") as file:
+with open(path + "/../html/from-twitter.html", "wb") as file:
     file.write(tweets_html)
