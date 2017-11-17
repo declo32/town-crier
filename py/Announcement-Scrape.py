@@ -13,7 +13,7 @@ import urllib.request
 
 from bs4 import BeautifulSoup
 
-path = os.path.split(sys.argv[0])[0]
+path = sys.argv[1]  # Put town-crier directory as command-line argument
 
 school_base_url = "http://www.scituate.k12.ma.us"
 
@@ -46,5 +46,5 @@ for img in announcements_final.find_all("img"):       # Fix relative links
 announcements_final = announcements_final.prettify()  # To make it a string, not for aesthetics
 
 # Write announcements to a file
-with open(path + "/../html/from-school.html", "w") as file:
+with open(path + "/html/from-school.html", "w") as file:
     file.write(announcements_final)
