@@ -14,22 +14,26 @@ path = sys.argv[1]  # Give name as command-line argument
 
 
 def get_img_url(tco_url):
+    # OH MY GOD I'M SORRY
+    
     if tco_url is None:
         return ""
-
-    req = urllib.request.Request(tco_url)
-    resp = urllib.request.urlopen(req)
-
+    
     try:
+        req = urllib.request.Request(tco_url)
+        resp = urllib.request.urlopen(req)
         soup = BeautifulSoup(resp, "lxml")
     except http.client.IncompleteRead:
         print("It didn't work")
         return ""
-
-    try:
-        return soup.find("div", attrs={"class": "AdaptiveMedia-photoContainer js-adaptive-photo "}).find("img")
-    except AttributeError:  # Doesn't link to an image
-        return ""
+    except Exception as e:
+        print(e)
+        print("Something happened that I didn't plan for... It should be fine.")
+    else:
+        try:
+            return soup.find("div", attrs={"class": "AdaptiveMedia-photoContainer js-adaptive-photo "}).find("img")
+        except AttributeError:  # Doesn't link to an image
+            return ""
 
 # These are from a local file
 api = twitter.Api(consumer_key=TOAuth.CONSUMER_KEY,
@@ -48,6 +52,7 @@ users = []
 current_time = time.time()
 limit_in_seconds = 60 * 60 * 24 * 7  # One week
 for username in usernames:
+    print("Finding {username}".format(username=username))
     try:
         users.append(
             (
