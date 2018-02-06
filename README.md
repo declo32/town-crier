@@ -13,3 +13,4 @@
 - Different sources (instagram, etc)
 - The Python-Twitter API will cut off tweets with an ellipsis, make it not do that
 - It is not aesthetically pleasing
+- Installation is hard, maybe use [Docker](https://www.docker.com/)?
